@@ -1,12 +1,9 @@
 const hre = require("hardhat");
-const fs = require("fs");
 
 async function main() {
-  const contract = await hre.ethers.deployContract("TestToken");
+  const contract = await hre.ethers.deployContract("Swisstronik", ["Hello Swisstronik from Ga Crypto!!"]);
   await contract.waitForDeployment();
-  const deployedContract = await contract.getAddress();
-  fs.writeFileSync("contract.txt", deployedContract);
-  console.log(`Contract deployed to ${deployedContract}`);
+  console.log(`Swisstronik contract deployed to ${contract.target}`);
 }
 
 main().catch((error) => {
