@@ -1,13 +1,12 @@
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
 const fs = require("fs");
 
 async function main() {
-  const perc20 = await ethers.deployContract("PERC20Sample");
-  await perc20.waitForDeployment();
-  const deployedContract = await perc20.getAddress();
+  const contract = await hre.ethers.deployContract("TestNFT");
+  await contract.waitForDeployment();
+  const deployedContract = await contract.getAddress();
   fs.writeFileSync("contract.txt", deployedContract);
-  
-  console.log(`PERC20Sample was deployed to: ${deployedContract}`)
+  console.log(`Contract deployed to ${deployedContract}`);
 }
 
 main().catch((error) => {
